@@ -12,7 +12,10 @@
             </div>
           </div>
           <!-- Search Bar -->
-          <div class="col-sm-6 pt-0"></div>
+          <div class="col-sm-6 pt-0">
+            <Search></Search>
+          </div>
+          
           <div class="col-sm-4"></div>
         </div>
 
@@ -100,7 +103,7 @@
                 <span aria-hidden="true" class="nav-line-1"></span>
                 <span aria-hidden="true" class="nav-line-2">Cart</span>
                 <span class="nav-cart-icon nav-sprite"></span>
-                <span id="nav-cart-count" aria-hidden="true" class="nav-car-count nav-cart-0">0</span>
+                <span id="nav-cart-count" aria-hidden="true" class="nav-cart-count nav-cart-0">0</span>
               </nuxt-link>
             </div>
           </div>
@@ -111,5 +114,10 @@
 </template>
 
 <script>
-export default {};
+import Search from '~/components/Search'
+export default {
+  component:{
+    Search
+  }
+};
 </script>

@@ -1,7 +1,9 @@
+const URL = "http://localhost:2000"
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: "client",
+    title: "intraNet",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -37,7 +39,10 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    proxy: true,
+    baseURL: URL
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {}
