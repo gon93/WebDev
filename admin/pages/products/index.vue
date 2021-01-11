@@ -118,8 +118,8 @@ export default {
   //only on API calls
   async asyncData({ $axios }) {
     try {
-      let categories = $axios.$get("http://localhost:2000/api/categories");
-      let owners = $axios.$get("http://localhost:2000/api/owners");
+      let categories = $axios.$get("/api/categories");
+      let owners = $axios.$get("/api/owners");
 
       //to get the response simultaneously
       const [catResponse, ownerResponse] = await Promise.all([
@@ -168,7 +168,7 @@ export default {
       data.append("photo", this.selectedFile, this.fileName);
 
       let result = await this.$axios.$post(
-        "http://localhost:2000/api/products/",
+        "/api/products/",
         data
       );
       this.$router.push("/");

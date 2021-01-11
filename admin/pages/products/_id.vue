@@ -123,10 +123,10 @@ export default {
   //only on API calls
   async asyncData({ $axios, params }) {
     try {
-      let categories = $axios.$get("http://localhost:2000/api/categories");
-      let owners = $axios.$get("http://localhost:2000/api/owners");
+      let categories = $axios.$get("/api/categories");
+      let owners = $axios.$get("/api/owners");
       let product = $axios.$get(
-        "http://localhost:2000/api/products/"+ params.id
+        "/api/products/"+ params.id
       );
 
       //to get the response simultaneously
@@ -181,7 +181,7 @@ export default {
 
       console.log(this.$route.params.id);
       let result = await this.$axios.$put(
-        "http://localhost:2000/api/products/" + this.$route.params.id,
+        "/api/products/" + this.$route.params.id,
         data
       );
       this.$router.push("/");

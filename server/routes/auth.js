@@ -38,7 +38,7 @@ router.post("/auth/signup", async (req, res) => {
 });
 
 //Profile Route
-router.get("/auth/user", verifyToken, async (req, res) => {
+router.get("/auth/user",  verifyToken, async (req, res) => {
   try {
     let foundUser = await User.findOne({ _id: req.decoded._id });
     if (foundUser) {
@@ -48,12 +48,37 @@ router.get("/auth/user", verifyToken, async (req, res) => {
       });
     }
   } catch (err) {
-    res.status(300).json({
+    res.status(500).json({
       success: false,
       message: err.message,
     });
   }
 });
+
+// Update Profile
+router.put("/auth/user", verifyToken, async(req,res) =>{
+  try {
+    let foundUser = await User.findOne({_id: req.decoded._id})
+
+    if(foundUser){
+      if(req.body.name) foundUser.name = req.body.name
+      if(req.body.email) foundUser.email = req.body.email
+      if(req.body.password) foundUser.password = req.body.password
+    }
+
+    await foundUser.save();
+
+    res.json({
+      success: true,
+      message: "Successfully updated"
+    })
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message
+    });
+  }
+})
 
 //Login Route
 router.post("/auth/login", async (req, res) => {

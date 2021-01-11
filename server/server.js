@@ -36,17 +36,19 @@ const productRoutes = require('./routes/product');
 const categoryRoutes = require('./routes/category');
 const ownerRoutes = require('./routes/owner');
 const userRoutes = require('./routes/auth');
+const reviewRoutes = require('./routes/review');
 
 app.use("/api",productRoutes);
 app.use("/api",categoryRoutes);
 app.use("/api",ownerRoutes);
 app.use("/api",userRoutes);
+app.use("/api",reviewRoutes);
 
-app.listen(2000, err => {
+app.listen(3000, err => {
     if(err){
         console.log(err);
     }else{
-        console.log("Listening on PORT", 2000);
+        console.log("Listening on PORT", 3000);
     }
 });
 

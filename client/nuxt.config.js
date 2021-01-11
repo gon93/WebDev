@@ -1,4 +1,4 @@
-const URL = "http://localhost:2000"
+const URL = "http://localhost:3000"
 
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -35,15 +35,35 @@ export default {
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     // https://go.nuxtjs.dev/pwa
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
+    "@nuxtjs/auth"
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+  // To get the baseURL so that we donot have to type out the default URL every time
   axios: {
     proxy: true,
     baseURL: URL
   },
 
+  proxy: {
+    "/api": URL
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
-  build: {}
-};
+  build: {},
+
+  auth:{
+    strategies: {
+      local: {
+        endpoints: {
+          login:{
+            propertyName: "token"
+          },
+          logout: true
+        }
+      }
+    }
+  }
+
+}

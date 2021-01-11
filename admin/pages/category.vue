@@ -59,7 +59,7 @@ export default {
       try {
         let data = { type: this.type };
         let response = await this.$axios.$post(
-          "http://localhost:2000/api/categories",
+          "/api/categories",
           data
         );
 
