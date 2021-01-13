@@ -28,19 +28,21 @@
               <h2 class="a-spacing-base">Overall Rating</h2>
               <div class="a-row">
                 <!-- Rating -->
-                <star-rating></star-rating>
+
+                  <star-rating v-model="rating"></star-rating>
+
               </div>
               <div class="a-row a-spacing-top-large">
                 <h2>Add photo or video</h2>
-                <p
-                  style="font-size: 14px; font-weight: 700;"
-                >Shoppers find images and videos more helpful than text alone.</p>
+                <p style="font-size: 14px; font-weight: 700">
+                  Shoppers find images and videos more helpful than text alone.
+                </p>
               </div>
               <div class="a-row a-spacing-top-medium">
                 <!-- Choose a Photo -->
                 <label class="choosefile-button">
                   <i class="fal fa-plus"></i>
-                  <input type="file" />
+                  <input type="file" @change="onFileSelected" />
                 </label>
               </div>
               <div class="a-spacing-top-large"></div>
@@ -51,8 +53,9 @@
                 <input
                   type="text"
                   class="a-input-text"
-                  style="width: 70%;"
+                  style="width: 70%"
                   placeholder="What's most important to know?"
+                  v-model="headline"
                 />
               </div>
               <!-- Body -->
@@ -60,7 +63,7 @@
                 <h2 class="a-spacing-base">Write your review</h2>
                 <textarea
                   placeholder="What do you like or dislike? What did you see this product for?"
-                  style="height:6em; width: 100%;"
+                  style="height: 6em; width: 100%"
                 ></textarea>
               </div>
             </div>
@@ -68,20 +71,26 @@
             <br />
             <hr />
             <div class="a-spacing-top-medium">
-              <p
-                style="font-size: 14px; font-weight: 700;"
-              >This is how you'll appear to other customers:</p>
+              <p style="font-size: 14px; font-weight: 700">
+                This is how you'll appear to other customers:
+              </p>
               <div class="media a-spacing-top-large">
                 <div class="media-left">
-                  <img src="/img/avatar.png" class="img-fluid" style="width: 50px;" />
+                  <img
+                    src="/img/avatar.png"
+                    class="img-fluid"
+                    style="width: 50px"
+                  />
                 </div>
                 <div class="media-body pl-3 pt-2">
-                  <input type="text" class="a-input-text" style="width: 100%;" />
+                  <input type="text" class="a-input-text" style="width: 100%" />
                 </div>
               </div>
             </div>
             <div class="a-row a-spacing-top-medium">
-              <span class="a-color-tertiary">Don't worry, you can always change this on your profile</span>
+              <span class="a-color-tertiary"
+                >Don't worry, you can always change this on your profile</span
+              >
             </div>
             <div class="a-row text-right a-spacing-top-large">
               <span class="a-button-register">
@@ -103,37 +112,44 @@
 </template>
 
 <script>
-import StarRating from "vue-star-rating"
+import StarRating from "vue-star-rating";
 
 export default {
-  component:{
-    StarRating
+  component: {
+    StarRating,
   },
-  async asyncData({$axios, params}) {
-    try {
-      let response = await $axios.$get(`/api/products/${params.id}`)
 
-      return{
-        product: response.product
-      }
+  async asyncData({ $axios, params }) {
+    try {
+      let response = await $axios.$get(`/api/products/${params.id}`);
+
+      return {
+        product: response.product,
+      };
     } catch (err) {
       console.log(err);
     }
   },
+
   data() {
     return {
       rating: 0,
       body: "",
       headline: "",
-      selectedFile: null, 
-      fileName: null
-    }
+      selectedFile: null,
+      fileName: null,
+    };
   },
+
   methods: {
-    onFileSelected(event){
-        this.selectedFile = event.target.files[0];
-        this.fileName = event.target.files[0].name;
-    }
+    onFileSelected() {
+      this.selectedFile = event.target.files[0];
+      this.fileName = event.target.files[0].name;
+    },
   },
-}
+  oneAddReview() {
+    try {
+    } catch (err) {}
+  },
+};
 </script>

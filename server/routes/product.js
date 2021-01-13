@@ -87,6 +87,7 @@ router.put("/products/:id", upload.single("photo"), async (req, res) => {
           stockQuantity: req.body.stockQuantity,
           description: req.body.description,
           photo: req.file.location,
+          rating: req.body.rating
         },
       },
       { upsert: true }
